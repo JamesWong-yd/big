@@ -127,7 +127,7 @@ export default {
       }
       this.userName = Cookies.get("_rma");
       this.checkTag(this.$route.name);
-      this._getMyMessageCount()
+      // this._getMyMessageCount()
     },
     toggleClick() {
       this.shrink = !this.shrink;

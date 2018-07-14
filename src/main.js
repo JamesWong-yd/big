@@ -1,12 +1,19 @@
 import Vue from 'vue';
 import iView from 'iview';
-import { router } from './router/index';
-import { appRouter } from './router/router';
+import {
+    router
+} from './router/index';
+import {
+    appRouter
+} from './router/router';
 import store from './store';
 import App from './app.vue';
 import '@/locale';
 import 'iview/dist/styles/iview.css';
 import VueI18n from 'vue-i18n';
+import {
+    Database
+} from './database/database';
 
 Vue.use(VueI18n);
 Vue.use(iView);
@@ -37,5 +44,7 @@ new Vue({
             }
         });
         this.$store.commit('setTagsList', tagsList);
+        // 创建数据
+        this.$store.commit('INIT_DATABASE', Database);
     }
 });

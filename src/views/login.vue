@@ -1,5 +1,6 @@
 <template>
   <div class="login" @keydown.enter="handleSubmit">
+    <div class="title-s">旧村庄全面改造成本核算项目申请管理系统</div>
     <div class="login-con">
       <Card :bordered="false">
         <p slot="title">
@@ -68,7 +69,21 @@ export default {
     handleSubmit: function() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this._login(this.form)
+          // this._login(this.form)
+          let res = {
+            status: true,
+            msg: '登陆成功',
+            data: {
+              id: '5abe4ae8ec6f6f17a07b5d32',
+              name: 'admin',
+              account: 'admin',
+              permission: [],
+              state: 1,
+              token:
+                'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.IlU1aWpReTYvL1NUWStoNFp6ZXJ5WlArcTBldHNBaFQwSmVEU0syTmhRWWRHOTJWVGlUT0lSRktlSWYyTGNoam43N011QzNxNXFIOUUrcmZKWU1IVXBPVlJEYlpNMHIwV3VOSHN2SFdxaDZqUFZrTTFWeG9HK0JrVldYRFpkY0x5VzBROHRLM1RlUHYzdlZPcm9WRUci.R6__tUvO6A2m9FxXDX2r-_MeAmPqrt8qcUJddiN9PC4'
+            }
+          }
+          this.setState(res.data)
         }
       })
     },
@@ -96,9 +111,16 @@ export default {
 
 <style lang="less">
 .login {
+  .title-s {
+    position: relative;
+    top: 25%;
+    right: 160px;
+    text-align: right;
+    font-size: 33px;
+  }
   width: 100%;
   height: 100%;
-  // background-image: url("https://file.iviewui.com/iview-admin/login_bg.jpg");
+  background-image: url(../images/bg.jpg);
   background-size: cover;
   background-position: center;
   position: relative;

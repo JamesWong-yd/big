@@ -112,6 +112,17 @@ export const appRouter = [
         children: [
             { path: '/confirm', title: '项目确认', name: 'confirm_index', component: resolve => { require(['@/mdview/confirm/confirm.vue'], resolve); } }
         ]
+    },
+    {
+        path: '/database',
+        icon: 'android-done-all',
+        title: '数据处理',
+        name: 'confirm',
+        access: 1,
+        component: Main,
+        children: [
+            { path: '/database', title: '数据处理', name: 'database_index', component: resolve => { require(['@/mdview/clipboard.vue'], resolve); } }
+        ]
     }
     // {
     //     path: '/msg-manage',
