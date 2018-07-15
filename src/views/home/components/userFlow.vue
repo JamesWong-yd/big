@@ -7,7 +7,7 @@ import echarts from 'echarts';
 
 const option = {
     tooltip: {
-        formatter: '{a} <br/>{b} : {c}%'
+        formatter: '{a} <br/>{b} : {c}万'
     },
     series: [
         {
@@ -22,7 +22,7 @@ const option = {
             },
             data: [{value: 50, name: '上月项目总支出'}],
             center: ['25%', '50%'],
-            radius: '80%',
+            radius: '70%',
             title: {
                 offsetCenter: [0, '80px']
             },
@@ -48,7 +48,7 @@ const option = {
             },
             data: [{value: 50, name: '上月项目总投入'}],
             center: ['75%', '50%'],
-            radius: '80%',
+            radius: '70%',
             title: {
                 offsetCenter: [0, '80px']
             },
