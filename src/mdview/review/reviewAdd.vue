@@ -4,7 +4,7 @@
       <Spin size="large" fix v-if="spinshow"></Spin>
       <p slot="title">{{title}}项目</p>
       <a href="#" slot="extra">
-        <Button type="primary" class="header-btn" icon="plus-round" v-if="!edit" :loading="loading" @click="addData">{{title}}</Button>
+        <Button type="primary" class="header-btn" icon="plus-round" v-if="!edit" :loading="loading" @click="addData(title)">{{title}}</Button>
         <Button type="ghost" class="header-btn" icon="ios-grid-view" @click="changlocaltion">返回</Button>
       </a>
       <div>
@@ -227,7 +227,7 @@
             </Form>
           </TabPane>
           <TabPane label="户主数据" name="name2">
-            
+            <proEdit :type="title"></proEdit>
           </TabPane>
           <TabPane label="资金信息" name="name3">
             <p style="margin:20px;color:red">备注：填写的数据默认单位为“万”</p>
@@ -240,7 +240,7 @@
                 </Col>
                 <Col span="8">
                   <FormItem label="市财政预算" >
-                  <Input v-model="formItem.dsmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dsmoney" placeholder="" :disabled="edit"></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
@@ -249,22 +249,24 @@
                   </FormItem>
                 </Col>
               </Row>
+              <Row>
               <Col span="8">
                   <FormItem label="其他总预算" >
-                    <Input v-model="formItem.domoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.domoney" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem label="前期工作经费" >
-                  <Input v-model="formItem.dqqmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dqqmoney" placeholder=""  :disabled="edit"></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem label="预计拉动固定资产投资" >
-                    <Input v-model="formItem.dyqmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dyqmoney" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
               </Row>
+              <Row>
               <Col span="8">
                   <FormItem label="项目总支出" >
                     <Input v-model="formItem.dacost" placeholder="" :disabled="edit"></Input>
@@ -272,18 +274,19 @@
                 </Col>
                 <Col span="8">
                   <FormItem label="项目累计拨付" >
-                  <Input v-model="formItem.daacost" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.daacost" placeholder=""  :disabled="edit"></Input>
                   </FormItem>
                 </Col>
               </Row>
               <Row>
                 <Col span="24">
                   <FormItem label="引入产业情况" >
-                    <Input v-model="formItem.dyrremark" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dyrremark" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
               </Row>
             </Form>
+            <money-add :type="title"></money-add>
           </TabPane>
         </Tabs>
       </div>
@@ -292,6 +295,8 @@
 </template>
 <script>
 import vueBus from '@/libs/vueBus'
+import proEdit from '@/mdview/components/proEdit'
+import moneyAdd from '@/mdview/components/moneyAdd'
 
 export default {
   props: {
@@ -351,32 +356,11 @@ export default {
     }
   },
   computed: {
-    editreturn(){
+    editreturn() {
       return this.edit || this.title === '修改'
     }
   },
-  created() {
-    let initdata
-    if (this.initdata) {
-      initdata = JSON.parse(this.initdata)
-      this.formItem = Object.assign(this.formItem, initdata)
-    }
-    // 创建时用
-    if (!this.$store.state.database.data.length) {
-      let formItems = localStorage.getItem('SETDATABASE_DATA')
-      if (formItems) {
-        formItems = JSON.parse(formItems)
-        formItems.map(item => {
-          this.$store.commit('SETDATABASE_DATA', item)
-        })
-        this.$Message.success(
-          `因意外关闭，还原成功，已存 ${
-            this.$store.state.database.data.length
-          } 条数据`
-        )
-      }
-    }
-  },
+  created() {},
   mounted() {
     vueBus.$on('initdataBus', e => {
       this.spinshow = true
@@ -388,7 +372,14 @@ export default {
     })
   },
   methods: {
-    addData() {
+    addData(type) {
+      if (
+        localStorage.getItem('SETDATABASE_DATA') ===
+        JSON.stringify(this.formItem)
+      ) {
+        this.$Message.warning('请勿重复提交')
+        return
+      }
       if (
         !(
           this.formItem.aaddress &&
@@ -400,22 +391,29 @@ export default {
         this.$Message.warning('请输入必填项')
       } else {
         this.loading = true
-        let formItems = JSON.parse(JSON.stringify(this.formItem))
-        formItems.id = new Date() * 1
-        formItems.process = '项目申请'
-        formItems.state = '锁止'
-        this.$store.commit('SETDATABASE_DATA', formItems)
-        localStorage.setItem(
-          'SETDATABASE_DATA',
-          JSON.stringify(this.$store.state.database.data)
-        )
-        this.$Message.success(
-          `创建成功，已存 ${this.$store.state.database.data.length} 条数据`
-        )
+        localStorage.setItem('SETDATABASE_DATA', JSON.stringify(this.formItem))
+        if (type === '添加') {
+          let formItems = JSON.parse(JSON.stringify(this.formItem))
+          formItems.id = new Date() * 1
+          formItems.process = '项目申请'
+          formItems.state = '锁止'
+          this.$store.commit('SETDATABASE_DATA', formItems)
+          this.$Message.success(`创建成功`)
+        } else {
+          let database = this.$store.state.database.data
+          for (let i in database) {
+            if (database[i].id === this.formItem.id) {
+              database[i] = JSON.parse(JSON.stringify(this.formItem))
+            }
+          }
+          this.$store.commit('INIT_DATABASE', database)
+          this.$Message.success(`修改成功`)
+          vueBus.$emit('tablereset')
+        }
         let _this = this
         setTimeout(() => {
           _this.loading = false
-        }, 2000)
+        }, 700)
       }
     },
     changlocaltion() {
@@ -424,10 +422,13 @@ export default {
       }
       this.$emit('changlocaltion', {
         localtion: 'manage',
-        edit: false,
-        data: {}
+        edit: false
       })
     }
+  },
+  components: {
+    proEdit,
+    moneyAdd
   }
 }
 </script>

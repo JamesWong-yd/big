@@ -88,7 +88,7 @@ export default {
         },
         {
           title: '户数（户）',
-          key: 'pdangerousnumber'
+          key: 'phome'
         },
         {
           title: '状态',

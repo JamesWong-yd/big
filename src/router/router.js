@@ -52,7 +52,8 @@ export const otherRouter = {
     children: [
         { path: 'home', title: { i18n: 'home' }, name: 'home_index', component: resolve => { require(['@/views/home/home.vue'], resolve); } },
         { path: 'ownspace', title: '个人中心', name: 'ownspace_index', component: resolve => { require(['@/views/own-space/own-space.vue'], resolve); } },
-        { path: 'message', title: '消息中心', name: 'message_index', component: resolve => { require(['@/views/message/message.vue'], resolve); } }
+        { path: 'message', title: '消息中心', name: 'message_index', component: resolve => { require(['@/views/message/message.vue'], resolve); } },
+        { path: 'admin', title: '数据处理', name: 'database_index', component: resolve => { require(['@/mdview/clipboard.vue'], resolve); } }
     ]
 };
 
@@ -111,17 +112,6 @@ export const appRouter = [
         component: Main,
         children: [
             { path: '/confirm', title: '项目确认', name: 'confirm_index', component: resolve => { require(['@/mdview/confirm/confirm.vue'], resolve); } }
-        ]
-    },
-    {
-        path: '/database',
-        icon: 'android-done-all',
-        title: '数据处理',
-        name: 'confirm',
-        access: 1,
-        component: Main,
-        children: [
-            { path: '/database', title: '数据处理', name: 'database_index', component: resolve => { require(['@/mdview/clipboard.vue'], resolve); } }
         ]
     }
     // {

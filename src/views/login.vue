@@ -113,10 +113,11 @@ export default {
 .login {
   .title-s {
     position: relative;
-    top: 25%;
+    top: 22%;
     right: 160px;
     text-align: right;
     font-size: 33px;
+    transform: translateY(-60%);
   }
   width: 100%;
   height: 100%;

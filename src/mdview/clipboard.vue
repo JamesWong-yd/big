@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     showdata() {
-      this.database = this.$store.state.database.data
+      this.database = JSON.stringify(this.$store.state.database.data)
       if (!this.database) {
         this.tips = '数据已被清除或未添加'
       } else {

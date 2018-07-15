@@ -89,7 +89,7 @@ export default {
         },
         {
           title: '户数（户）',
-          key: 'pdangerousnumber'
+          key: 'phome'
         },
         {
           title: '状态',
@@ -130,25 +130,25 @@ export default {
                   }
                 },
                 '查看'
-              ),
-              h(
-                'Button',
-                {
-                  props: {
-                    type: 'success',
-                    size: 'small'
-                  },
-                  style: {
-                    marginRight: '5px'
-                  },
-                  on: {
-                    click: () => {
-                      this.confirm(params.row, '项目初审')
-                    }
-                  }
-                },
-                '通过'
               )
+              // h(
+              //   'Button',
+              //   {
+              //     props: {
+              //       type: 'success',
+              //       size: 'small'
+              //     },
+              //     style: {
+              //       marginRight: '5px'
+              //     },
+              //     on: {
+              //       click: () => {
+              //         this.confirm(params.row, '项目初审')
+              //       }
+              //     }
+              //   },
+              //   '通过'
+              // )
               // h(
               //   'Button',
               //   {

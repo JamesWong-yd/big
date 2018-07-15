@@ -240,7 +240,7 @@
                 </Col>
                 <Col span="8">
                   <FormItem label="市财政预算" >
-                  <Input v-model="formItem.dsmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dsmoney" placeholder="" :disabled="edit"></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
@@ -249,22 +249,24 @@
                   </FormItem>
                 </Col>
               </Row>
+              <Row>
               <Col span="8">
                   <FormItem label="其他总预算" >
-                    <Input v-model="formItem.domoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.domoney" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem label="前期工作经费" >
-                  <Input v-model="formItem.dqqmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dqqmoney" placeholder=""  :disabled="edit"></Input>
                   </FormItem>
                 </Col>
                 <Col span="8">
                   <FormItem label="预计拉动固定资产投资" >
-                    <Input v-model="formItem.dyqmoney" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dyqmoney" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
               </Row>
+              <Row>
               <Col span="8">
                   <FormItem label="项目总支出" >
                     <Input v-model="formItem.dacost" placeholder="" :disabled="edit"></Input>
@@ -272,14 +274,14 @@
                 </Col>
                 <Col span="8">
                   <FormItem label="项目累计拨付" >
-                  <Input v-model="formItem.daacost" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.daacost" placeholder=""  :disabled="edit"></Input>
                   </FormItem>
                 </Col>
               </Row>
               <Row>
                 <Col span="24">
                   <FormItem label="引入产业情况" >
-                    <Input v-model="formItem.dyrremark" placeholder="" :disabled="edit"></Input>
+                    <Input v-model="formItem.dyrremark" placeholder="" :disabled="edit" ></Input>
                   </FormItem>
                 </Col>
               </Row>
