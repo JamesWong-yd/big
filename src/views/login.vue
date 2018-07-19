@@ -1,6 +1,6 @@
 <template>
   <div class="login" @keydown.enter="handleSubmit">
-    <div class="title-s">广州市城市更新局 项目管理系统</div>
+    <div class="title-s"><span><img src="../images/logo1.png" ></span>广州市城市更新局 项目管理系统</div>
     <div class="login-con">
       <Card :bordered="false">
         <p slot="title">
@@ -118,6 +118,13 @@ export default {
     text-align: right;
     font-size: 33px;
     transform: translateY(-60%);
+    img{
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      vertical-align: middle;
+      margin-right: 10px;
+    }
   }
   width: 100%;
   height: 100%;
