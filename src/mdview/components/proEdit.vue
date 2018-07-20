@@ -145,7 +145,7 @@ export default {
                   },
                   on: {
                     click: () => {
-                      // this.editApply(params.row)
+                      this.editApply(params.row)
                     }
                   }
                 },
@@ -196,12 +196,8 @@ export default {
       vueBus.$emit('initdataBus', data)
     },
     editApply(data) {
-      this.$emit('changlocaltion', {
-        localtion: 'add',
-        edit: false,
-        title: '修改'
-      })
-      vueBus.$emit('initdataBus', data)
+      this.$emit('huzhushow')
+      // vueBus.$emit('initdataBus', data)
     },
     reset() {
       this.formdata.houseMan = ''

@@ -227,7 +227,7 @@
             </Form>
           </TabPane>
           <TabPane label="户主数据" name="name2">
-            <proEdit :type="title"></proEdit>
+            <proEdit :type="title" @huzhushow="huzhushow"></proEdit>
           </TabPane>
           <TabPane label="资金信息" name="name3">
             <p style="margin:20px;color:red">备注：填写的数据默认单位为“万”</p>
@@ -291,6 +291,78 @@
         </Tabs>
       </div>
     </Card>
+    <Modal
+      :width="'60%'"
+      v-model="huzhuedit"
+      title="房屋户主数据修改"
+      @on-ok="huzhuedit = false"
+      @on-cancel="huzhuedit = false">
+      <Form :model="formItem1"  ref="formValidate" :label-width="120">
+        <Row>
+          <Col span="8">
+            <FormItem label="户主" required>
+              <Input v-model="formItem1.a" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="门牌号" required>
+              <Input v-model="formItem1.b" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="房屋面积" >
+              <Input v-model="formItem1.c" placeholder=""></Input>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="16">
+            <FormItem label="地址" >
+              <Input v-model="formItem1.d" placeholder="" ></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="前期费" >
+              <Input v-model="formItem1.e" placeholder=""></Input>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="8">
+            <FormItem label="临迁费" >
+              <Input v-model="formItem1.f" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="迁运费" >
+              <Input v-model="formItem1.g" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="复建费" >
+              <Input v-model="formItem1.h" placeholder=""></Input>
+            </FormItem>
+          </Col>
+        </Row>
+        <Row>
+          <Col span="8">
+            <FormItem label="农转用" >
+              <Input v-model="formItem1.j" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="搬家补签费" >
+              <Input v-model="formItem1.k" placeholder=""></Input>
+            </FormItem>
+          </Col>
+          <Col span="8">
+            <FormItem label="不可预见费" >
+              <Input v-model="formItem1.l" placeholder=""></Input>
+            </FormItem>
+          </Col>
+        </Row>
+      </Form>
+    </Modal>
   </div>
 </template>
 <script>
@@ -316,6 +388,7 @@ export default {
   data() {
     return {
       spinshow: false,
+      huzhuedit: false,
       loading: false,
       formItem: {
         anumber: '',
@@ -352,6 +425,19 @@ export default {
         dacost: '',
         daacost: '',
         dyrremark: ''
+      },
+      formItem1: {
+        a: '户主1',
+        b: 'A01',
+        c: '280',
+        d: '东圃大街一巷一号',
+        e: '5000',
+        f: '67200',
+        g: '8400',
+        h: '64000',
+        j: '-',
+        k: '2000',
+        l: '-'
       }
     }
   },
@@ -424,6 +510,9 @@ export default {
         localtion: 'manage',
         edit: false
       })
+    },
+    huzhushow(){
+      this.huzhuedit = true
     }
   },
   components: {
