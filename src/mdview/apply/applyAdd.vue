@@ -295,7 +295,7 @@
       :width="'60%'"
       v-model="huzhuedit"
       title="房屋户主数据修改"
-      @on-ok="huzhuedit = false"
+      @on-ok="huzhueditHandle"
       @on-cancel="huzhuedit = false">
       <Form :model="formItem1"  ref="formValidate" :label-width="120">
         <Row>
@@ -513,6 +513,14 @@ export default {
     },
     huzhushow(){
       this.huzhuedit = true
+    },
+    huzhueditHandle(){
+      this.$Modal.confirm({
+        title: '提示',
+        content: '拆运费超过每平方30元的标准，请确定是否继续提交，若提交，对应项目将会锁止，信息会报送廉政风险智能防控系统，待核查无风险后给予解锁',
+        okText: '确定',
+        cancelText: '取消'
+      });
     }
   },
   components: {

@@ -4,7 +4,7 @@ let util = {
 
 };
 util.title = function (title) {
-    title = title || '旧村庄全面改造成本核算项目业务系统';
+    title = title || '广州市城市更新局项目管理系统';
     window.document.title = title;
 };
 

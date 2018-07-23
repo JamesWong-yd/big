@@ -1,6 +1,6 @@
 <template>
   <div class="login" @keydown.enter="handleSubmit">
-    <div class="title-s"><span><img src="../images/logo1.png" ></span>广州市城市更新局 项目管理系统</div>
+    <div class="title-s"><span><img src="../images/logo1.png" ></span>广州市城市更新局项目管理系统</div>
     <div class="login-con">
       <Card :bordered="false">
         <p slot="title">
